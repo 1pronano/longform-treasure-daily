@@ -1,0 +1,223 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>롱폼 보물 데일리</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap"><style>
+/* 대화 순서대로 쌓이는 한 줄 세로 노트 */
+:root{
+  --bg:#f3f6f4; --card:#ffffff; --fg:#1d2a26; --muted:#5b6b66;
+  --accent:#d9480f; --accent-soft:#fde8dc; --line:#d5ded9; --ok:#2b8a3e; --bad:#c92a2a;
+  --display:"Jua","Apple SD Gothic Neo",sans-serif;
+  --body:"Gowun Dodum","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141b19; --card:#1d2624; --fg:#e7eeeb; --muted:#9fb0aa;
+  --accent:#ff8a4c; --accent-soft:#3a2418; --line:#2e3a37; --ok:#69db7c; --bad:#ff8787; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141b19; --card:#1d2624; --fg:#e7eeeb; --muted:#9fb0aa;
+  --accent:#ff8a4c; --accent-soft:#3a2418; --line:#2e3a37; --ok:#69db7c; --bad:#ff8787; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.75}
+.wrap{max-width:780px;margin:0 auto;padding-block:40px 64px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;line-height:1.3;margin:0}
+h1{font-size:2.4rem}
+h2{font-size:1.5rem;margin-bottom:12px}
+h3{font-size:1.15rem}
+p{margin:0}
+.lead{color:var(--muted);font-size:1.05rem;margin-top:8px}
+.toc{display:flex;flex-direction:column;gap:6px;margin-top:16px;padding:16px 20px;background:var(--card);border:1px solid var(--line);border-radius:14px}
+.toc a{color:var(--fg)} .toc a:hover{color:var(--accent)}
+.part{display:flex;flex-direction:column;gap:32px;border-top:3px solid var(--accent);padding-top:20px}
+.parthead{display:flex;flex-direction:column;gap:8px}
+.q{margin:0;padding:10px 14px;border-left:4px solid var(--accent);background:var(--card);border-radius:0 10px 10px 0;color:var(--fg);font-size:.95rem}
+.q::before{content:"내 질문  ";font-family:var(--display);color:var(--accent)}
+.badge{font-family:var(--display);color:var(--accent);font-size:1rem}
+.big{background:var(--accent-soft);border-radius:14px;padding:20px 22px;font-size:1.1rem}
+.big b{color:var(--accent)}
+.rules{display:flex;flex-direction:column;gap:14px}
+.rule{display:grid;grid-template-columns:52px 1fr;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.num{font-family:var(--display);font-size:1.6rem;color:var(--accent);text-align:center}
+.rule>div{min-width:0;display:flex;flex-direction:column;gap:6px}
+.rule .why{color:var(--muted)}
+.star{border:2px solid var(--accent)}
+.tag{display:inline-block;background:var(--accent);color:#fff;font-size:.8rem;border-radius:99px;padding:0 10px;margin-left:6px;vertical-align:middle}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--display);font-weight:400;background:var(--accent-soft)}
+#part3 table,#part4 table{min-width:760px}
+td.num2{font-variant-numeric:tabular-nums;white-space:nowrap}
+td.n{font-variant-numeric:tabular-nums;color:var(--accent);font-weight:700;white-space:nowrap}
+ul,ol{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
+.no li::marker{content:"✕  ";color:var(--bad)}
+.warn{border-left:4px solid var(--bad);background:var(--card);padding:16px 20px;border-radius:0 12px 12px 0}
+.ex{color:var(--muted);font-size:.95rem}
+.sum{text-align:center;font-family:var(--display);font-size:1.3rem;background:var(--card);border:2px dashed var(--accent);border-radius:16px;padding:22px}
+.pending{color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:20px}
+.src{color:var(--muted);font-size:.85rem;text-align:center}
+section{display:flex;flex-direction:column;gap:12px}
+.field{border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--bg)}
+.fh{font-size:1.4rem;color:var(--accent)}
+.common{background:var(--accent-soft);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+details.ch{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details.ch summary{cursor:pointer;line-height:1.6}
+details.ch[open] summary{margin-bottom:10px}
+dl{display:grid;grid-template-columns:8.5em 1fr;gap:8px 14px;margin:0}
+dt{font-family:var(--display);color:var(--accent)} dd{margin:0;min-width:0}
+@media (max-width:560px){dl{grid-template-columns:1fr} dt{margin-top:6px}}
+.tips{margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+.flag{color:var(--bad);margin-bottom:8px}
+
+body{margin:0}
+.part{border-top:3px solid var(--accent);padding-top:16px;display:flex;flex-direction:column;gap:20px}
+.part table{min-width:640px}
+details.ch{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details.ch summary{cursor:pointer;line-height:1.6}
+dl{display:grid;grid-template-columns:7em 1fr;gap:8px 14px;margin:10px 0 0}
+dt{font-family:var(--display);color:var(--accent)} dd{margin:0;min-width:0}
+dd ol,dd ul{margin:0}
+@media (max-width:560px){dl{grid-template-columns:1fr}}
+.thumb{display:inline-flex;flex-direction:column;background:#111;color:#fff;padding:10px 16px;border-radius:8px;font-family:var(--display);font-size:1.2rem;line-height:1.3;margin-top:8px}
+.thumb b{color:#ffd43b;font-weight:400}
+</style></head><body><div class="wrap"><header><h1>롱폼 보물 데일리</h1><p class="lead">2026-11-27 오후 업데이트 · 작은 채널인데 터진 영상과 빠르게 크는 채널을 매일 새로 찾아요.</p>
+<p class="big">오늘 새로 나타난 채널 <b>7개</b> · 새 영상 <b>28개</b><br><span class="ex">검색한 영상 910개 중 기준을 넘은 작은 채널 영상 96개</span></p>
+<nav class="toc"><a href="#f0">부동산</a><a href="#f1">경제·금융</a><a href="#f2">역사</a><a href="#f3">범죄·사건</a><a href="#f4">시니어 사연</a><a href="#f5">바디캠</a><a href="#f6">영화</a></nav></header>
+<article class="part" id="f0"><h2>부동산</h2><section><h3>빠르게 크는 채널 (5개)</h3>
+<div class="tbl"><table><tr><th></th><th>채널</th><th>나이</th><th>영상</th><th>구독자</th><th>어제보다</th><th>중간 조회</th><th>10만↑</th></tr>
+<tr><td></td><td><a href="https://www.youtube.com/@kimjiho_official" target="_blank" rel="noopener">김지호의 공간문해력</a></td><td class="num2">157일</td><td class="num2">20개</td><td class="num2">39,300</td><td class="num2">+200</td><td class="num2">136,500</td><td class="num2">13개</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/@돈흐르네" target="_blank" rel="noopener">돈흐르네</a></td><td class="num2">33일</td><td class="num2">32개</td><td class="num2">9,700</td><td class="num2">+140</td><td class="num2">35,000</td><td class="num2">10개</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/@이슈라면IFISSUE" target="_blank" rel="noopener">이슈라면 IF ISSUE</a></td><td class="num2">24일</td><td class="num2">9개</td><td class="num2">483</td><td class="num2">+27</td><td class="num2">7,100</td><td class="num2">2개</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/@secondjobmaster" target="_blank" rel="noopener">돈되는집이야기</a></td><td class="num2">288일</td><td class="num2">16개</td><td class="num2">2,740</td><td class="num2"></td><td class="num2">2,600</td><td class="num2">2개</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/@Save_TAX" target="_blank" rel="noopener">탈세청ㅣ탈세 막는 회계사</a></td><td class="num2">293일</td><td class="num2">26개</td><td class="num2">2,580</td><td class="num2">+0</td><td class="num2">1,550</td><td class="num2">4개</td></tr>
+</table></div>
+</section><section><h3>보물 영상 (6개)</h3>
+<div class="tbl"><table><tr><th></th><th>영상</th><th>점수</th><th>구독자</th><th>조회수</th><th>구독자 대비</th><th>시간당</th></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=f_9jWM3VDHo" target="_blank" rel="noopener">&quot;9억 주고 샀는데 4억에도 안 팔려요&quot; 땡처리 경매장서 줄줄이 유찰되는 수도권 타운하우스의 참혹한 민낯</a><br><span class="ex">돈흐르네 · 21분 · 10월 29일</span></td><td class="n">81</td><td class="num2">9,700</td><td class="num2">479,590</td><td class="num2">49.4배</td><td class="num2">689</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=Kxk7qpY8cwE" target="_blank" rel="noopener">“팔고 싶어도 안 팔립니다” 내 집이 노후를 망치는 소름 돋는 이유</a><br><span class="ex">김지호의 공간문해력 · 17분 · 10월 27일</span></td><td class="n">73</td><td class="num2">39,300</td><td class="num2">2,640,329</td><td class="num2">67.2배</td><td class="num2">3,549</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=hFF9oisXAKI" target="_blank" rel="noopener">재건축만 기다린 일본 아파트 주민들, 50년 뒤 어떻게 살고 있나</a><br><span class="ex">이슈라면 IF ISSUE · 17분 · 11월 22일</span></td><td class="n">72</td><td class="num2">483</td><td class="num2">131,781</td><td class="num2">272.8배</td><td class="num2">1,098</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=lhWRbseLFxM" target="_blank" rel="noopener">세금체납으로 압류까지 된 옥주현, 도산전문변호사가 본 진짜 문제는 따로 있었습니다.</a><br><span class="ex">폐업 전에, 기업재건본부 · 25분 · 11월 18일</span></td><td class="n">72</td><td class="num2">64,500</td><td class="num2">239,761</td><td class="num2">3.7배</td><td class="num2">1,110</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=56EKtiGUOFM" target="_blank" rel="noopener">&quot;이제 전세 주면 세금 폭탄?!&quot; 내년부터 전세 보증금만 받아도 소득세 냅니다</a><br><span class="ex">탈세청ㅣ탈세 막는 회계사 · 9분 · 11월 3일</span></td><td class="n">71</td><td class="num2">2,580</td><td class="num2">410,714</td><td class="num2">159.2배</td><td class="num2">713</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=s9M6eM2SRDY" target="_blank" rel="noopener">&quot;소액으로도 가능한데 왜 안해요?&quot; 하루 30분 일하고 1년에 3억씩 버는 전직 군인</a><br><span class="ex">돈되는집이야기 · 22분 · 11월 25일</span></td><td class="n">56</td><td class="num2">2,740</td><td class="num2">139,617</td><td class="num2">51.0배</td><td class="num2">2,909</td></tr>
+</table></div>
+</section></article>
+<article class="part" id="f1"><h2>경제·금융</h2><section><h3>빠르게 크는 채널 (2개)</h3>
+<div class="tbl"><table><tr><th></th><th>채널</th><th>나이</th><th>영상</th><th>구독자</th><th>어제보다</th><th>중간 조회</th><th>10만↑</th></tr>
+<tr><td></td><td><a href="https://www.youtube.com/@백세건강생활연구-t5o" target="_blank" rel="noopener">백세건강생활연구소</a></td><td class="num2">28일</td><td class="num2">13개</td><td class="num2">1,040</td><td class="num2">+30</td><td class="num2">20,000</td><td class="num2">2개</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/@인생의울림r" target="_blank" rel="noopener">인생의 울림</a></td><td class="num2">32일</td><td class="num2">31개</td><td class="num2">1,580</td><td class="num2">+40</td><td class="num2">9,600</td><td class="num2">4개</td></tr>
+</table></div>
+</section><section><h3>보물 영상 (6개)</h3>
+<div class="tbl"><table><tr><th></th><th>영상</th><th>점수</th><th>구독자</th><th>조회수</th><th>구독자 대비</th><th>시간당</th></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=q0crwjVuMYQ" target="_blank" rel="noopener">&quot;한 돈 110만원에 샀는데&quot; 미국 물가 쇼크로 금값 빠지자 부자들과 한국은행이 거꾸로 금을 쓸어 담는 진짜 이유</a><br><span class="ex">돈파도 · 16분 · 11월 14일</span></td><td class="n">82</td><td class="num2">530</td><td class="num2">127,656</td><td class="num2">240.9배</td><td class="num2">409</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=UmRjMGxbqWg" target="_blank" rel="noopener">미국, 금리 인상을 넘어 폭등한다. 한국의 경제위기 최고조!</a><br><span class="ex">경제충전기 · 13분 · 11월 16일</span></td><td class="n">78</td><td class="num2">1,250</td><td class="num2">245,601</td><td class="num2">196.5배</td><td class="num2">930</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=vZ4rxNU-Aro" target="_blank" rel="noopener">국민연금 3명 중 2명이 월 60만원도 못 받는 이유</a><br><span class="ex">세배이 · 8분 · 11월 4일</span></td><td class="n">65</td><td class="num2">433</td><td class="num2">235,461</td><td class="num2">543.8배</td><td class="num2">427</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=TJ8dOFqE7rs" target="_blank" rel="noopener">65세 이후, 생활비가 이 정도면 걱정 없이 잘 사는 겁니다ㅣ노후 생활비ㅣ행복한 노후ㅣ노후준비ㅣ노후의 지혜ㅣ인생조언ㅣ명언ㅣ오디오북ㅣ라디오북ㅣ시니어ㅣ노년</a><br><span class="ex">인생의 울림 · 32분 · 11월 18일</span></td><td class="n">45</td><td class="num2">1,580</td><td class="num2">179,080</td><td class="num2">113.3배</td><td class="num2">829</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=RXRbXkvevDY" target="_blank" rel="noopener">노후에 돈이 모이는 여자들의 5가지 습관</a><br><span class="ex">백세건강생활연구소 · 32분 · 11월 10일</span></td><td class="n">44</td><td class="num2">1,040</td><td class="num2">281,866</td><td class="num2">271.0배</td><td class="num2">691</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=QHX2RKMZ0fE" target="_blank" rel="noopener">노후에 돈이 마르는 여자들의 5가지 습관</a><br><span class="ex">백세건강생활연구소 · 34분 · 11월 7일</span></td><td class="n">43</td><td class="num2">1,040</td><td class="num2">168,703</td><td class="num2">162.2배</td><td class="num2">351</td></tr>
+</table></div>
+</section></article>
+<article class="part" id="f2"><h2>역사</h2><section><h3>빠르게 크는 채널 (5개)</h3>
+<div class="tbl"><table><tr><th></th><th>채널</th><th>나이</th><th>영상</th><th>구독자</th><th>어제보다</th><th>중간 조회</th><th>10만↑</th></tr>
+<tr><td></td><td><a href="https://www.youtube.com/@달빛세계사" target="_blank" rel="noopener">달빛 세계사</a></td><td class="num2">153일</td><td class="num2">14개</td><td class="num2">20,600</td><td class="num2">+0</td><td class="num2">193,000</td><td class="num2">8개</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/@BullyangHistory" target="_blank" rel="noopener">불량 세계사</a></td><td class="num2">39일</td><td class="num2">13개</td><td class="num2">2,650</td><td class="num2">+20</td><td class="num2">55,000</td><td class="num2">4개</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/@인류살이" target="_blank" rel="noopener">인류살이</a></td><td class="num2">23일</td><td class="num2">8개</td><td class="num2">1,710</td><td class="num2"></td><td class="num2">51,500</td><td class="num2">3개</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/@지정학연구소" target="_blank" rel="noopener">지정학연구소</a></td><td class="num2">340일</td><td class="num2">24개</td><td class="num2">33,700</td><td class="num2">+500</td><td class="num2">50,500</td><td class="num2">8개</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/@천하역사록" target="_blank" rel="noopener">천하역사록</a></td><td class="num2">66일</td><td class="num2">20개</td><td class="num2">4,070</td><td class="num2">+120</td><td class="num2">43,500</td><td class="num2">8개</td></tr>
+</table></div>
+</section><section><h3>보물 영상 (10개)</h3>
+<div class="tbl"><table><tr><th></th><th>영상</th><th>점수</th><th>구독자</th><th>조회수</th><th>구독자 대비</th><th>시간당</th></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=VYgHgc8u5iM" target="_blank" rel="noopener">250만 대군과 대포 4만 문의 마지막 심판… 제국의 심장을 도려낸 최후의 총공세 | 1945, 베를린 공방전</a><br><span class="ex">불량 세계사 · 34분 · 10월 30일</span></td><td class="n">89</td><td class="num2">2,650</td><td class="num2">126,813</td><td class="num2">47.9배</td><td class="num2">189</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=PkdDjhTx0Bk" target="_blank" rel="noopener">일본이 진주만 대신 소련을 쳤다면?</a><br><span class="ex">만약에? · 23분 · 11월 10일</span></td><td class="n">86</td><td class="num2">4,670</td><td class="num2">139,406</td><td class="num2">29.9배</td><td class="num2">342</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=_O5XSG0K5mw" target="_blank" rel="noopener">닭은 매일 먹으면서 꿩은 왜 한 번도 안 먹게 됐을까 | 꿩고기</a><br><span class="ex">맛있는 역사 · 12분 · 11월 22일</span></td><td class="n">82</td><td class="num2">4,910</td><td class="num2">789,163</td><td class="num2">160.7배</td><td class="num2">6,576</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=LMuZgWaKBG4" target="_blank" rel="noopener">대구가 22km 앞이었는데.. 북한군은 왜 &#x27;다부동&#x27;을 넘지 못했을까?｜북한군이 본 다부동 전투</a><br><span class="ex">별별팩트 · 23분 · 11월 9일</span></td><td class="n">82</td><td class="num2">1,530</td><td class="num2">489,556</td><td class="num2">320.0배</td><td class="num2">1,133</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=o_zFF8rQm64" target="_blank" rel="noopener">피라미드 속 숨겨진 진짜 공간, 위치까지 아는데 왜 아무도 못 들어갈까? | 입구조차 도둑이 판 굴이었다</a><br><span class="ex">지식세이렌 · 11분 · 11월 11일</span></td><td class="n">82</td><td class="num2">3,990</td><td class="num2">469,579</td><td class="num2">117.7배</td><td class="num2">1,223</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=wHMzX6FC9wc" target="_blank" rel="noopener">궁궐의 똥은 어디로 갔을까? 하루 150명이 쓴 궁궐 화장실을 3D로 열어 봤다 | 조선시대</a><br><span class="ex">3D 역사 이렇게 쉬울수가 · 8분 · 11월 1일</span></td><td class="n">81</td><td class="num2">5,220</td><td class="num2">1,348,846</td><td class="num2">258.4배</td><td class="num2">2,162</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=ubDxQdomgaY" target="_blank" rel="noopener">소련을 치지 않은 독일, 2차 세계대전의 운명은 달라졌을까?</a><br><span class="ex">평행우주 IF STORY · 19분 · 11월 3일</span></td><td class="n">80</td><td class="num2">1,760</td><td class="num2">459,536</td><td class="num2">261.1배</td><td class="num2">798</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=5WNz_7qyGH8" target="_blank" rel="noopener">AI가 펼치지도 않고 읽어 낸 숯덩이 책 | 화산 속 서재에서 나온 플라톤이 묻힌 곳</a><br><span class="ex">지식세이렌 · 11분 · 11월 2일</span></td><td class="n">80</td><td class="num2">3,990</td><td class="num2">351,493</td><td class="num2">88.1배</td><td class="num2">586</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=se_xZa6FJBk" target="_blank" rel="noopener">석탄을 아끼며 10달, 얼음에 갇힌 배를 어떻게 데웠을까? | 세계사 겨울나기</a><br><span class="ex">인류살이 · 13분 · 11월 19일</span></td><td class="n">79</td><td class="num2">1,710</td><td class="num2">289,756</td><td class="num2">169.4배</td><td class="num2">1,509</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=hJUho-tbGGs" target="_blank" rel="noopener">청나라 황제는 후궁을 어떻게 뽑았을까? 열여섯 살 소녀가 서태후가 되기까지</a><br><span class="ex">시간의 밤 · 28분 · 10월 27일</span></td><td class="n">79</td><td class="num2">835</td><td class="num2">146,036</td><td class="num2">174.9배</td><td class="num2">196</td></tr>
+</table></div>
+</section></article>
+<article class="part" id="f3"><h2>범죄·사건</h2><section><h3>빠르게 크는 채널 (3개)</h3>
+<div class="tbl"><table><tr><th></th><th>채널</th><th>나이</th><th>영상</th><th>구독자</th><th>어제보다</th><th>중간 조회</th><th>10만↑</th></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/@드라마나라-k6l" target="_blank" rel="noopener">드라마나라</a></td><td class="num2">24일</td><td class="num2">3개</td><td class="num2">866</td><td class="num2"></td><td class="num2">424,000</td><td class="num2">3개</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/@unlock_kr" target="_blank" rel="noopener">unlock_kr</a></td><td class="num2">38일</td><td class="num2">5개</td><td class="num2">35,100</td><td class="num2">+400</td><td class="num2">172,000</td><td class="num2">5개</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/@로건의현장기록" target="_blank" rel="noopener">로건의 현장기록</a></td><td class="num2">56일</td><td class="num2">12개</td><td class="num2">1,490</td><td class="num2">+0</td><td class="num2">38,000</td><td class="num2">2개</td></tr>
+</table></div>
+</section><section><h3>보물 영상 (9개)</h3>
+<div class="tbl"><table><tr><th></th><th>영상</th><th>점수</th><th>구독자</th><th>조회수</th><th>구독자 대비</th><th>시간당</th></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=XtZDrLT3dzU" target="_blank" rel="noopener">9개월 동안 자연사로 위장된 죽음, 완전범죄를 노린 범인은 어떻게 잡혔을까(미국 실화 바디캠)</a><br><span class="ex">로건의 현장기록 · 34분 · 11월 8일</span></td><td class="n">86</td><td class="num2">1,490</td><td class="num2">112,793</td><td class="num2">75.7배</td><td class="num2">247</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=Y0kj2pygBnQ" target="_blank" rel="noopener">23만 명을 뒤져도 없던 범인. 20년 만에 풀린 신정동 연쇄살인</a><br><span class="ex">그날밤 · 10분 · 10월 31일</span></td><td class="n">86</td><td class="num2">875</td><td class="num2">373,753</td><td class="num2">427.1배</td><td class="num2">577</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=ZXRCF9TB7e8" target="_blank" rel="noopener">미친.. 체포 6일 전 퍼프 대디가 직접 찍은 영상까지 공개해버린 50센트 ㄷㄷㄷ</a><br><span class="ex">한오키 · 22분 · 11월 21일</span></td><td class="n">85</td><td class="num2">890</td><td class="num2">1,113,559</td><td class="num2">1251.2배</td><td class="num2">7,733</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=Zn09CfRII50" target="_blank" rel="noopener">중국을 충격에 빠뜨린 두 형제의 연쇄살인 사건｜11명의 희생자와 끔찍한 진실</a><br><span class="ex">사건 추적 · 30분 · 11월 2일</span></td><td class="n">84</td><td class="num2">655</td><td class="num2">165,905</td><td class="num2">253.3배</td><td class="num2">277</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=etWmhhKIqD4" target="_blank" rel="noopener">숲속에 버려진 차량을 수색하던 경찰, 연쇄X인범의 끔찍한 오두막을 발견하다(미국 바디캠)</a><br><span class="ex">제니의 사건기록 · 30분 · 10월 31일</span></td><td class="n">83</td><td class="num2">23,900</td><td class="num2">304,629</td><td class="num2">12.7배</td><td class="num2">470</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=_NdXjL0n_kY" target="_blank" rel="noopener">연기가 새어 나오던 캠핑카… 안에서 발견된 충격적인 비밀</a><br><span class="ex">제니의 사건기록 · 31분 · 11월 7일</span></td><td class="n">77</td><td class="num2">23,900</td><td class="num2">134,967</td><td class="num2">5.6배</td><td class="num2">281</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=kXHIhuQLRvY" target="_blank" rel="noopener">23년만에 풀린 미국 미제사건</a><br><span class="ex">unlock_kr · 16분 · 11월 11일</span></td><td class="n">73</td><td class="num2">35,100</td><td class="num2">172,320</td><td class="num2">4.9배</td><td class="num2">449</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=l1Qghw1slEY" target="_blank" rel="noopener">🔥대한민국 범죄 액션 드라마의 레전드🔥 재벌과 정치인, 검찰까지 한통속인 도시에서 세상에서 가장 독한 남자들이 거대한 악의 카르텔에 정면으로 맞서는 충격적인 이야기</a><br><span class="ex">드라마나라 · 137분 · 11월 19일</span></td><td class="n">63</td><td class="num2">866</td><td class="num2">425,300</td><td class="num2">491.1배</td><td class="num2">2,215</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=t5BgBYoW_zg" target="_blank" rel="noopener">일본 역사상 가장 기괴하고 역겨운 사건</a><br><span class="ex">unlock_kr · 18분 · 11월 2일</span></td><td class="n">61</td><td class="num2">35,100</td><td class="num2">785,235</td><td class="num2">22.4배</td><td class="num2">1,309</td></tr>
+</table></div>
+</section></article>
+<article class="part" id="f4"><h2>시니어 사연</h2><section><h3>빠르게 크는 채널 (5개)</h3>
+<div class="tbl"><table><tr><th></th><th>채널</th><th>나이</th><th>영상</th><th>구독자</th><th>어제보다</th><th>중간 조회</th><th>10만↑</th></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/@우체통드라마" target="_blank" rel="noopener">우체통드라마</a></td><td class="num2">10일</td><td class="num2">10개</td><td class="num2">1,030</td><td class="num2"></td><td class="num2">23,500</td><td class="num2">3개</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/@시니어행복곳간" target="_blank" rel="noopener">시니어 행복곳간: 복을 부르는</a></td><td class="num2">242일</td><td class="num2">28개</td><td class="num2">18,400</td><td class="num2"></td><td class="num2">19,000</td><td class="num2">6개</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/@인생르네상스" target="_blank" rel="noopener">인생르네상스</a></td><td class="num2">54일</td><td class="num2">11개</td><td class="num2">26,100</td><td class="num2">+0</td><td class="num2">18,000</td><td class="num2">4개</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/@저녁밥상극장" target="_blank" rel="noopener">저녁밥상극장</a></td><td class="num2">56일</td><td class="num2">34개</td><td class="num2">3,400</td><td class="num2">+10</td><td class="num2">14,000</td><td class="num2">7개</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/@영화다방" target="_blank" rel="noopener">영화다방</a></td><td class="num2">29일</td><td class="num2">12개</td><td class="num2">11,400</td><td class="num2"></td><td class="num2">6,650</td><td class="num2">2개</td></tr>
+</table></div>
+</section><section><h3>보물 영상 (10개)</h3>
+<div class="tbl"><table><tr><th></th><th>영상</th><th>점수</th><th>구독자</th><th>조회수</th><th>구독자 대비</th><th>시간당</th></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=AH0wM9iaY8k" target="_blank" rel="noopener">염소 다섯 마리 빚 대신 산속에 팔려 간 7살 아이가 &quot;그럼 저는요?&quot; 묻고 12년간 야생 늑대 무리와 살았던 전설의 감동 실화🔥늑대와 함께 산 소년</a><br><span class="ex">영화다방 · 21분 · 11월 18일</span></td><td class="n">77</td><td class="num2">11,400</td><td class="num2">125,650</td><td class="num2">11.0배</td><td class="num2">582</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=KnIJ8wqb258" target="_blank" rel="noopener">검역 증명서 없어 &quot;걘 비행기 못 탑니다&quot; 버려진 셰퍼드가 활주로에서 주인 비행기만 2년간 기다렸던 전설의 감동 실화🔥팔마</a><br><span class="ex">영화다방 · 21분 · 11월 19일</span></td><td class="n">74</td><td class="num2">11,400</td><td class="num2">128,237</td><td class="num2">11.2배</td><td class="num2">668</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=xzXIePztfR0" target="_blank" rel="noopener">친구 백반집 주방에서 하루 12시간, 5년을 일하고 받은 월급 150만 원… 친구가 &quot;내 된장&quot;이라 자랑하던 그 맛의 진짜 주인은 따로 있었습니다 | 사이다사연</a><br><span class="ex">우체통드라마 · 25분 · 11월 21일</span></td><td class="n">67</td><td class="num2">1,030</td><td class="num2">176,985</td><td class="num2">171.8배</td><td class="num2">1,229</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=TYUq786aJKE" target="_blank" rel="noopener">할아버지의 굴욕을 찍은 손녀.. 무시받던 며느리가 회장의 운명을 바꿀 회의실에 나타나는데..ㅣ노후사연ㅣ감동사연</a><br><span class="ex">우체통드라마 · 28분 · 11월 20일</span></td><td class="n">66</td><td class="num2">1,030</td><td class="num2">283,695</td><td class="num2">275.4배</td><td class="num2">1,689</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=CIv_nIuI7Ng" target="_blank" rel="noopener">눈보라 속에 쫒겨난 며느리가, 시댁 집을 사버렸습니다.  #야담 #사이다드라마 #인생이야기 #창작사극 #반전드라마 #권선징악 #시니어드라마</a><br><span class="ex">인생르네상스 · 11분 · 11월 1일</span></td><td class="n">65</td><td class="num2">26,100</td><td class="num2">859,220</td><td class="num2">32.9배</td><td class="num2">1,377</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=itdFHQoXAGU" target="_blank" rel="noopener">북한 주프랑스 대사 극비 탈북,40년전 죽은줄 알았던 어머니 생존에 오열[탈북민 감동사연]</a><br><span class="ex">북한에서 온 이야기 · 97분 · 10월 28일</span></td><td class="n">65</td><td class="num2">8,980</td><td class="num2">120,198</td><td class="num2">13.4배</td><td class="num2">167</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=xbgOB8vl0_8" target="_blank" rel="noopener">10년을 함께 산 착한 남편, 시어머니는 왜 며느리에게 그를 믿지 말라 했을까? | 온화야담</a><br><span class="ex">온화야담 · 75분 · 11월 10일</span></td><td class="n">64</td><td class="num2">998</td><td class="num2">191,096</td><td class="num2">191.5배</td><td class="num2">468</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=nqjrAIH1XMA" target="_blank" rel="noopener">애 딸린 만두장수가 내 며느리? 시험하러 온 회장이 고개 숙인 사연 | 저녁밥상극장</a><br><span class="ex">저녁밥상극장 · 20분 · 11월 1일</span></td><td class="n">64</td><td class="num2">3,400</td><td class="num2">160,810</td><td class="num2">47.3배</td><td class="num2">258</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=5_2Gz5ciWWk" target="_blank" rel="noopener">앞으로 백김치 담글 때 맹물 붓지 마세요! &#x27;이것&#x27;만 부으면 다 먹을 때까지 무르지 않고 끝까지 아삭합니다! 줄 서서 먹는 대박집 백김치 비법</a><br><span class="ex">시니어 행복곳간: 복을 부르는 · 8분 · 11월 4일</span></td><td class="n">59</td><td class="num2">18,400</td><td class="num2">809,076</td><td class="num2">44.0배</td><td class="num2">1,466</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=yILH6hTadIk" target="_blank" rel="noopener">이 설정 켜져있으면 계좌·카드·비밀번호까지 전부 유출됩니다! 지금 바로 꺼두세요 [갤럭시 시니어 필수]</a><br><span class="ex">똑소리 시니어정보 · 10분 · 11월 5일</span></td><td class="n">57</td><td class="num2">4,760</td><td class="num2">212,203</td><td class="num2">44.6배</td><td class="num2">402</td></tr>
+</table></div>
+</section></article>
+<article class="part" id="f5"><h2>바디캠</h2><section><h3>빠르게 크는 채널 (1개)</h3>
+<div class="tbl"><table><tr><th></th><th>채널</th><th>나이</th><th>영상</th><th>구독자</th><th>어제보다</th><th>중간 조회</th><th>10만↑</th></tr>
+<tr><td></td><td><a href="https://www.youtube.com/@제니의사건기록" target="_blank" rel="noopener">제니의 사건기록</a></td><td class="num2">198일</td><td class="num2">34개</td><td class="num2">23,900</td><td class="num2">+0</td><td class="num2">158,500</td><td class="num2">26개</td></tr>
+</table></div>
+</section><section><h3>보물 영상 (10개)</h3>
+<div class="tbl"><table><tr><th></th><th>영상</th><th>점수</th><th>구독자</th><th>조회수</th><th>구독자 대비</th><th>시간당</th></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=ardmlH2ealU" target="_blank" rel="noopener">맨발의 12살 아들이 이웃집 초인종을 눌렀다…엄마는 구독자 200만 육아 유튜버였다(미국 실화 바디캠)</a><br><span class="ex">바디캠 기록실 · 13분 · 11월 8일</span></td><td class="n">88</td><td class="num2">174</td><td class="num2">228,628</td><td class="num2">1314.0배</td><td class="num2">501</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=xaQJXzHOXyk" target="_blank" rel="noopener">아들이 살x 용의자라는 사실을 알게된 순간(미국 실화 바디캠)</a><br><span class="ex">제니의 사건기록 · 38분 · 8월 29일</span></td><td class="n">87</td><td class="num2">23,900</td><td class="num2">370,463</td><td class="num2">15.5배</td><td class="num2">172</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=vxCbYNDMiMM" target="_blank" rel="noopener">[실제 바디캠] 엄마가 문을 잠갔어요, 아빠가 못 들어오게</a><br><span class="ex">랭킹터짐 · 14분 · 10월 22일</span></td><td class="n">87</td><td class="num2">1,590</td><td class="num2">193,952</td><td class="num2">122.0배</td><td class="num2">224</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=zBrj_mE_5oo" target="_blank" rel="noopener">딸을 찾기 위해 직접 추적에 나선 가족들…경찰의 무성의한 수사의 결말 (미국 실화 바디캠)</a><br><span class="ex">제니의 사건기록 · 39분 · 10월 11일</span></td><td class="n">86</td><td class="num2">23,900</td><td class="num2">135,961</td><td class="num2">5.7배</td><td class="num2">121</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=CrN4JCZkUfc" target="_blank" rel="noopener">8년 동안 묻혀있던 일가족 4명 몰살 사건(미국실화바디캠)</a><br><span class="ex">로건의 현장기록 · 30분 · 10월 11일</span></td><td class="n">85</td><td class="num2">1,490</td><td class="num2">217,857</td><td class="num2">146.2배</td><td class="num2">193</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=hwKoW-2_jsk" target="_blank" rel="noopener">데이트도 하고 딸도 돌봐줄 여성을 찾던 아버지, 온라인에서 만난 여성을 집에 들였다(미국 바디캠)</a><br><span class="ex">제니의 사건기록 · 31분 · 10월 23일</span></td><td class="n">84</td><td class="num2">23,900</td><td class="num2">175,780</td><td class="num2">7.4배</td><td class="num2">209</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=ou78Q4vWRCY" target="_blank" rel="noopener">시x에서 머리가 사라졌다... 아랫집에서 들려온 끔찍한 소리(미국 실화 -바디캠)</a><br><span class="ex">제니의 사건기록 · 28분 · 9월 5일</span></td><td class="n">83</td><td class="num2">23,900</td><td class="num2">235,852</td><td class="num2">9.9배</td><td class="num2">118</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=TNR8Jrfn9xk" target="_blank" rel="noopener">아내가 잠든 사이, 집에 낯선 남자가 들어왔다 (미국 실화 바디캠)</a><br><span class="ex">제니의 사건기록 · 27분 · 9월 12일</span></td><td class="n">83</td><td class="num2">23,900</td><td class="num2">177,061</td><td class="num2">7.4배</td><td class="num2">97</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=z0ttxZSkrrI" target="_blank" rel="noopener">가족이 모두 있는 집에서 딸이 살x됐다.범인은 어떻게 잡혔을까(미국 실화 바디캠)</a><br><span class="ex">제니의 사건기록 · 27분 · 9월 25일</span></td><td class="n">82</td><td class="num2">23,900</td><td class="num2">241,411</td><td class="num2">10.1배</td><td class="num2">160</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=8bCg9Qvt7AM" target="_blank" rel="noopener">사람을 닭장에 가둔 용의자가 보석으로 풀려나고 벌어진 끔찍한 일(미국 바디캠)</a><br><span class="ex">제니의 사건기록 · 27분 · 9월 19일</span></td><td class="n">79</td><td class="num2">23,900</td><td class="num2">136,139</td><td class="num2">5.7배</td><td class="num2">82</td></tr>
+</table></div>
+</section></article>
+<article class="part" id="f6"><h2>영화</h2><section><h3>빠르게 크는 채널 (5개)</h3>
+<div class="tbl"><table><tr><th></th><th>채널</th><th>나이</th><th>영상</th><th>구독자</th><th>어제보다</th><th>중간 조회</th><th>10만↑</th></tr>
+<tr><td></td><td><a href="https://www.youtube.com/@funnmovie-h6r" target="_blank" rel="noopener">재미난 영화</a><br><span class=flag>⚠️ 원본 장면을 길게 써서 저작권 위험 큼</span></td><td class="num2">303일</td><td class="num2">14개</td><td class="num2">35,600</td><td class="num2">+0</td><td class="num2">975,500</td><td class="num2">14개</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/@retrocinema-i9r" target="_blank" rel="noopener">영화나라</a></td><td class="num2">296일</td><td class="num2">7개</td><td class="num2">1,230</td><td class="num2">+10</td><td class="num2">335,000</td><td class="num2">6개</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/@moviewoohoo" target="_blank" rel="noopener">무비 야호</a><br><span class=flag>⚠️ 신작을 결말까지 다뤄 저작권 위험</span></td><td class="num2">111일</td><td class="num2">32개</td><td class="num2">45,200</td><td class="num2">+0</td><td class="num2">298,000</td><td class="num2">19개</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/@DarkHour011" target="_blank" rel="noopener">다크 아워[Dark Hour]</a></td><td class="num2">184일</td><td class="num2">23개</td><td class="num2">11,000</td><td class="num2"></td><td class="num2">226,000</td><td class="num2">13개</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/@moviemart_kr" target="_blank" rel="noopener">무비마트</a></td><td class="num2">146일</td><td class="num2">14개</td><td class="num2">3,460</td><td class="num2">+40</td><td class="num2">156,000</td><td class="num2">7개</td></tr>
+</table></div>
+</section><section><h3>보물 영상 (10개)</h3>
+<div class="tbl"><table><tr><th></th><th>영상</th><th>점수</th><th>구독자</th><th>조회수</th><th>구독자 대비</th><th>시간당</th></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=bZfRpx8qkiM" target="_blank" rel="noopener">[결말포함] 와...구글 보안팀이 &quot;교보재&quot;로 쓴다는 해킹 영화...하필이면 천재 해커를 건드린 테러범의 최후ㄷㄷ   (63자)</a><br><span class="ex">팬더의e무비 · 23분 · 11월 5일</span></td><td class="n">82</td><td class="num2">12,600</td><td class="num2">476,582</td><td class="num2">37.8배</td><td class="num2">903</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=HNv4xri6vww" target="_blank" rel="noopener">만만하게 봤던 옆집 아저씨가 알고 보니 전설의 킬러였을 때 벌어지는 일 ㄷㄷ [결말포함/영화리뷰]</a><br><span class="ex">망개무비 · 49분 · 11월 3일</span></td><td class="n">79</td><td class="num2">2,750</td><td class="num2">367,883</td><td class="num2">133.8배</td><td class="num2">639</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=-fWtLIo_i6g" target="_blank" rel="noopener">[결말포함] 와...2편 확정! 역대 좀비 영화 흥행 &quot;1위&quot; 레전드 명작ㄷㄷ</a><br><span class="ex">팬더무비 · 24분 · 11월 14일</span></td><td class="n">76</td><td class="num2">1,240</td><td class="num2">375,591</td><td class="num2">302.9배</td><td class="num2">1,204</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=cyAif-qYXc4" target="_blank" rel="noopener">《34분 순삭》하필 은퇴후 힘을 숨긴 &quot;중국집 알바&quot; 출신 레전드 조폭을 건드린 양아치들의 최후(영화리뷰 결말포함)</a><br><span class="ex">영화천국 · 34분 · 11월 25일</span></td><td class="n">75</td><td class="num2">167,000</td><td class="num2">427,945</td><td class="num2">2.6배</td><td class="num2">8,916</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=EY3M5lidxHE" target="_blank" rel="noopener">이연걸 숨은 명작...🔥가족을 잃고 복수를 위한 고독한 싸움...소림오조(영화리뷰/결말포함)</a><br><span class="ex">영화나라 · 32분 · 11월 1일</span></td><td class="n">75</td><td class="num2">1,230</td><td class="num2">594,514</td><td class="num2">483.3배</td><td class="num2">953</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=Edw20LDYcjQ" target="_blank" rel="noopener">[결말포함] 결말 보고 진짜 육성으로 쌍욕 나오는 충격의 반전 명작..ㄷㄷ 할부금 밀리면 산 채로 장기 적출하는 미래사회 🔥 역대급 SF액션!! [영화리뷰]</a><br><span class="ex">시네(CINE) 압축기 · 23분 · 11월 1일</span></td><td class="n">74</td><td class="num2">40,000</td><td class="num2">475,750</td><td class="num2">11.9배</td><td class="num2">762</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=rW9YvEGtfJU" target="_blank" rel="noopener">🔥성형외과 의사 아버지에게 못생겼다고 가스라이팅 당한 왕따 존예녀가 흑화하면 생기는 일🔥 결말포함</a><br><span class="ex">다크 아워[Dark Hour] · 16분 · 11월 21일</span></td><td class="n">73</td><td class="num2">11,000</td><td class="num2">319,641</td><td class="num2">29.1배</td><td class="num2">2,220</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=nmy2D-zZ6tw" target="_blank" rel="noopener">[영화리뷰/결말포함] 하필이면 전설적인 여성 암살자의 딸을 납치한 범죄 조직… 딸을 건드린 순간 시작된 엄마의 미친 복수!</a><br><span class="ex">마음자람 · 29분 · 11월 18일</span></td><td class="n">73</td><td class="num2">1,150</td><td class="num2">195,212</td><td class="num2">169.7배</td><td class="num2">904</td></tr>
+<tr><td></td><td><a href="https://www.youtube.com/watch?v=zj4nBolMtq8" target="_blank" rel="noopener">와...하필이면 은퇴 후 조용히 운송 일을 하며 살아가던 &quot;전직 특수요원&quot;을 건드리게 되면 벌어지는 일..ㄷㄷ 미쳐버린 몰입감의 개꿀잼 참교육 액션영화!!! [영화리뷰/결말포함]</a><br><span class="ex">하울무비 · 39분 · 11월 11일</span></td><td class="n">71</td><td class="num2">92,600</td><td class="num2">1,866,409</td><td class="num2">20.2배</td><td class="num2">4,860</td></tr>
+<tr><td>🆕</td><td><a href="https://www.youtube.com/watch?v=iGq05L-hvuE" target="_blank" rel="noopener">🔥캐스팅 미쳤다🔥하필 CIA마저 두려워하는 &quot;싸이코패스 사형수&quot;의 딸을 납치한 미친 테러 조직ㄷㄷ [결말포함]</a><br><span class="ex">N생작 : review · 28분 · 10월 28일</span></td><td class="n">71</td><td class="num2">23,200</td><td class="num2">377,736</td><td class="num2">16.3배</td><td class="num2">525</td></tr>
+</table></div>
+</section></article>
+<section class="warn"><h3>이렇게 찾았어요</h3><ul>
+<li>분야마다 검색어를 넣고 “이번 달 + 조회수 순”으로 찾아요(바디캠은 최근 3개월).</li>
+<li>8분 넘고 10만 회 넘은 영상 중, 영상 35개 이하 작은 채널만 남겨요.</li>
+<li>영상은 제브 100점 점수(후킹30·물증30·스토리20·적합20) 높은 순, 채널은 중간 조회수 높은 순이에요. 한 편만 터진 채널은 빼요.</li>
+<li>🆕는 어제 목록에 없던 것이에요. 왜 잘 터지는지 분석은 <a href="https://claude.ai/artifact/RT9v6PHJehrZgTJPvyjFyu#part5" target="_blank" rel="noopener">롱폼 수익창출 노트</a>에 있어요. 새 채널 분석이 필요하면 말씀해 주세요.</li>
+<li>채널 나이는 남아 있는 가장 오래된 영상 날짜로 재요.</li></ul></section></div></body></html>
